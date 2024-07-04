@@ -1,50 +1,101 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<html xmlns:th="thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Producto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+        }
+        form {
+            width: 50%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+        table td, table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        input[type=text], input[type=number] {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin: 5px 0 15px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+        }
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
 
-	<head>
+<body>
 
-		<title>Registrar Producto</title>
+<h1>Registrar Producto</h1>
 
-	</head>
+<form th:action="@{/vistas/GuardarProducto}" method="post" th:object="${regproducto}">
+    <table>
+        <input type="hidden" th:field="*{IDPRODUCTOCL3}">
+        <tr>
+            <td>NOMBRE</td>
+            <td><input type="text" th:field="*{NOMBRECL3}"></td>
+        </tr>
+        <tr>
+            <td>PRECIO VENTA</td>
+            <td><input type="text" th:field="*{PRECIOVENTACL3}"></td>
+        </tr>
+        <tr>
+            <td>STOCK</td>
+            <td><input type="number" th:field="*{STOCK}"></td>
+        </tr>
+        <tr>
+            <td>PRECIO COMPRA</td>
+            <td><input type="text" th:field="*{PRECIOCOMPCL3}"></td>
+        </tr>
+        <tr>
+            <td>ESTADO</td>
+            <td><input type="text" th:field="*{ESTADOCL3}"></td>
+        </tr>
+        <tr>
+            <td>DESCRIPCION</td>
+            <td><input type="text" th:field="*{DESCRIPCL3}"></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <input type="submit" value="Registrar">
+            </td>
+        </tr>
+    </table>
+</form>
 
-	<body bgcolor="#EDE1F5">
-
-		<h1 align="center">Registrar Producto</h1>
-
-		<form th:action="@{/vistas/GuardarProducto}" method="post" th:object="${regproducto}">
-
-		<table align="center">
-
-			<input type="hidden" th:field="*{idProducto}">
-
-			<tr><td>NOMBRE</td><td><input type="text" th:field="*{nombre}"></td></tr>
-
-			<tr><td>PRECIO VENTA</td><td><input type="text" th:field="*{precioVenta}"></td></tr>
-
-			<tr><td>STOCK</td><td><input type="number" th:field="*{stock}"></td></tr>
-
-			<tr><td>PRECIO COMPRA</td><td><input type="text" th:field="*{precioComp}"></td></tr>
-
-			<tr>
-			    <td>ESTADO</td>
-				<td><input type="text" th:field="*{estado}"></td>
-			</tr>
-
-			<tr><td>DESCRIPCION</td><td><input type="text" th:field="*{descrip}"></td></tr>
-
-			<tr><td  colspan="2" align="center">
-
-				<input type="submit" value="Registrar"></td>
-
-				</tr>
-
-		</table>			
-
-		</form>
-
-		
-
-	</body>
+</body>
 
 </html>

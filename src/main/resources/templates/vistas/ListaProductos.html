@@ -1,77 +1,109 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<html xmlns:th="thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Productos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        table th, table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        table th {
+            background-color: #f2f2f2;
+        }
+        .btn {
+            display: inline-block;
+            padding: 8px 12px;
+            text-decoration: none;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .btn-success {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-warning {
+            background-color: #ffc107;
+            color: white;
+        }
+        .btn:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
 
-	<head>
+<body>
 
-		<title>Listado de Productos</title>
+<h1>Listado de Productos</h1>
 
-	</head>
+<h2>
+    <a th:href="@{RegistrarProducto}" th:text="'Nuevo Registro'" title="Crear nuevo registro" class="btn btn-success"></a>
+</h2>
 
-	<body bgcolor="#EDE1F5">
+<table>
+    <thead>
+        <tr>
+            <th>CODIGO</th>
+            <th>NOMBRE</th>
+            <th>PRECIO VENTA</th>
+            <th>STOCK</th>
+            <th>PRECIO COMPRA</th>
+            <th>ESTADO</th>
+            <th>DESCRIPCION</th>
+            <th colspan="2">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <th:block th:each="p : ${listado}">
+            <tr>
+                <td th:text="${p.IDPRODUCTOCL3}"></td>
+                <td th:text="${p.NOMBRECL3}"></td>
+                <td th:text="${p.PRECIOVENTACL3}"></td>
+                <td th:text="${p.STOCK}"></td>
+                <td th:text="${p.PRECIOCOMPCL3}"></td>
+                <td th:text="${p.ESTADOCL3}"></td>
+                <td th:text="${p.DESCRIPCL3}"></td>
+                <td>
+                    <a th:href="@{'editar/' + ${p.IDPRODUCTOCL3}}" th:text="Editar" title="Editar Registro"
+                        class="btn btn-primary"></a>
+                </td>
+                <td>
+                    <a th:href="@{'eliminar/' + ${p.IDPRODUCTOCL3}}" th:text="Eliminar" class="btn btn-warning"></a>
+                </td>
+            </tr>
+        </th:block>
+    </tbody>
+</table>
 
-		<h1 align="center">Listado de Productos</h1>
-
-		
-
-		<h2 align="center">
-
-			<a th:href="@{RegistrarProducto}" th:text="'nuevo registro'"
-
-			 title="crear nuevo registro" class="btn btn-success"></a>
-
-		</h2>
-
-		<table align="center" border="2">
-
-			<tr>
-
-				<th>CODIGO</th>
-				<th>NOMBRE</th>
-				<th>PRECIO VENTA</th>
-				<th>STOCK</th>
-				<th>PRECIO COMPRA</th>
-				<th>ESTADO</th>
-				<th>DESCRIPCION</th>
-
-				<th colspan="2">Acciones</th>
-
-			</tr>
-
-			<th:block th:each="p:${listado}">
-
-				<tr>
-
-					<td th:text="${p.idProducto}"></td>
-					<td th:text="${p.nombre}"></td>
-					<td th:text="${p.precioVenta  }"></td>
-					<td th:text="${p.stock}"></td>
-					<td th:text="${p.precioComp}"></td>
-					<td th:text="${p.estado}"></td>
-					<td th:text="${p.descrip}"></td>
-								
-					<td><a th:href="@{editar/}+${p.idProducto}" th:text="Editar" 
-
-					title="Editar Registro" class="btn btn-primary"></a></td>
-
-					<td>
-
-						<a th:href="@{eliminar/}+${p.idProducto}" th:text="Eliminar"
-						class="btn btn-warning"></a>					
-
-					</td>
-
-				</tr>				
-
-			</th:block>
-
-			
-
-		</table>>
-		
-
-	</body>
-
-	
+</body>
 
 </html>
